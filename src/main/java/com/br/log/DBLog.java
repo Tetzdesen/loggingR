@@ -1,5 +1,8 @@
 package com.br.log;
 
+import com.br.singleton.SQLiteConexaoSingleton;
+import java.sql.SQLException;
+
 /**
  *
  * @author tetzner
@@ -8,7 +11,13 @@ public class DBLog implements ILog {
 
     @Override
     public void escrever(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            SQLiteConexaoSingleton conexao = SQLiteConexaoSingleton.getInstance();
+            conexao.getconexaoSQLite().createStatement().execute(object.toString());
+            System.out.println("\nDado registrado com sucesso!");
+        } catch (SQLException e) {
+            throw new IllegalStateException("Erro ao registrar dado: " + e.getMessage());
+        }
     }
-    
+
 }
