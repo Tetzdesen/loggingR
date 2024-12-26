@@ -23,3 +23,8 @@
 hs_err_pid*
 replay_pid*
 /target/
+
+# add files logs
+logs/
+*.db
+
