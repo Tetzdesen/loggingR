@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Registros>
+  <registro>Pessoa{nome=João, idade=30, cidade=Nova Iorque}</registro>
+</Registros>
