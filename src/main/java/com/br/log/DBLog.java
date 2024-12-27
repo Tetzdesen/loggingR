@@ -1,5 +1,6 @@
 package com.br.log;
 
+import com.br.dao.LogSQLiteDAO;
 import com.br.singleton.SQLiteConexaoSingleton;
 import java.sql.SQLException;
 
@@ -8,16 +9,16 @@ import java.sql.SQLException;
  * @author tetzner
  */
 public class DBLog implements ILog {
+    private final LogSQLiteDAO logDAO;
 
+    public DBLog() {
+        this.logDAO = new LogSQLiteDAO();
+    }
+    
     @Override
     public void escrever(Object object) {
-        try {
-            SQLiteConexaoSingleton conexao = SQLiteConexaoSingleton.getInstance();
-            conexao.getconexaoSQLite().createStatement().execute(object.toString());
-            System.out.println("\nDado registrado com sucesso!");
-        } catch (SQLException e) {
-            throw new IllegalStateException("Erro ao registrar dado: " + e.getMessage());
-        }
+        logDAO.inserirLog(object.toString());
+        System.out.println("\nDado registrado com sucesso!");
     }
 
 }
