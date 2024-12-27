@@ -23,7 +23,7 @@ public class LogSQLiteDAO implements ILogDAO {
 
         String sql = "INSERT INTO log (registro) VALUES (?)";
 
-        try (PreparedStatement stmt = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             stmt.setString(1, mensagem);
             stmt.executeUpdate();

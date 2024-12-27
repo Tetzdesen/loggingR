@@ -1,5 +1,6 @@
 package com.br.principal;
 
+import com.br.log.DBLog;
 import com.br.log.JSONLog;
 import com.br.log.LogService;
 import com.br.log.XMLLog;
@@ -11,7 +12,7 @@ import com.br.log.XMLLog;
 public class Principal {
 
     public static void main(String[] args) {
-        LogService logService = new LogService(new XMLLog());
+        LogService logService = new LogService(new DBLog());
         Pessoa pessoa = new Pessoa("João", 30, "Nova Iorque");
         logService.escreverMensagem(pessoa);
     }
