@@ -24,13 +24,13 @@ public class JSONLog implements ILog {
     public void escrever(Object object) {
         try {
             String mensagem = gsonAdapter.serializar(object);
-            registrarEmArquivo(mensagem);
+            escreverMensagemEmArquivoJSON(mensagem);
         } catch (IOException e) {
             throw new RuntimeException("Erro ao realizar a escrita da mensagem: " + e.getMessage(), e);
         }
     }
     
-    private void registrarEmArquivo(String mensagem) throws IOException {
+    private void escreverMensagemEmArquivoJSON(String mensagem) throws IOException {
         File file = new File(caminhoArquivo);
         try { 
             
