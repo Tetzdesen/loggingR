@@ -46,14 +46,14 @@ public class XMLLog implements ILog {
     public void escrever(Object object) {
         try {
             String xml = jacksonAdapter.serializar(object);
-            processarArquivoXML(xml);
+            escreverMensagemEmArquivoXML(xml);
             System.out.println("\nLog registrado no arquivo XML!");
-        } catch (IOException ex) {
-            Logger.getLogger(XMLLog.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException e) {
+            Logger.getLogger(XMLLog.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
-    private void processarArquivoXML(String mensagem) throws IOException {
+    private void escreverMensagemEmArquivoXML(String mensagem) throws IOException {
         File file = new File(caminhoArquivo);
         StringBuilder conteudoXML = new StringBuilder();
 
