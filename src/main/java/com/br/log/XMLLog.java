@@ -15,16 +15,16 @@ import java.util.logging.Logger;
  * @author tetzner
  */
 public class XMLLog implements ILog {
-
+    private final File arquivoXML;
     private final String caminhoArquivo = "logs/XMLLog.xml";
     private final JacksonAdapter jacksonAdapter;
     
     public XMLLog() {
         jacksonAdapter = new JacksonAdapter();
-        criarArquivoXML();
+        arquivoXML = criarArquivoXML();
     }
 
-    private void criarArquivoXML() {
+    private File criarArquivoXML() {
 
         File arquivo = new File(caminhoArquivo);
 
@@ -36,10 +36,11 @@ public class XMLLog implements ILog {
                     writer.write("<Registros>\n");
                     writer.write("</Registros>");
                 }
-            } catch (IOException ex) {
-                Logger.getLogger(XMLLog.class.getName()).log(Level.SEVERE, "Erro ao criar o arquivo XML.", ex);
+            } catch (IOException e) {
+              throw new RuntimeException("Erro na criação de arquivo XML" + e.getMessage(), e);
             }
         }
+        return arquivo;
     }
 
     @Override
@@ -49,15 +50,15 @@ public class XMLLog implements ILog {
             escreverMensagemEmArquivoXML(xml);
             System.out.println("\nLog registrado no arquivo XML!");
         } catch (IOException e) {
-            Logger.getLogger(XMLLog.class.getName()).log(Level.SEVERE, null, e);
+            throw new RuntimeException("Erro na gravação de arquivo XML" + e.getMessage(), e);
         }
     }
 
     private void escreverMensagemEmArquivoXML(String mensagem) throws IOException {
-        File file = new File(caminhoArquivo);
+       
         StringBuilder conteudoXML = new StringBuilder();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(arquivoXML))) {
             String linha;
             while ((linha = reader.readLine()) != null) {
                 conteudoXML.append(linha).append("\n");
@@ -68,11 +69,11 @@ public class XMLLog implements ILog {
 
         if (posicaoFechamento != -1) {
             conteudoXML.delete(posicaoFechamento, conteudoXML.length());
-            conteudoXML.append("  <registro>").append(mensagem).append("</registro>\n");
+            conteudoXML.append("  ").append(mensagem).append("\n");
             conteudoXML.append("</Registros>");
         }
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivoXML))) {
             writer.write(conteudoXML.toString());
         }
     }
