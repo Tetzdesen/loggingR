@@ -26,5 +26,6 @@ replay_pid*
 
 # add files logs
 logs/
+/logs
 *.db
 

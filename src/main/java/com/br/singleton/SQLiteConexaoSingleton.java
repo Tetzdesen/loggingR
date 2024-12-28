@@ -3,8 +3,6 @@ package com.br.singleton;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -21,8 +19,8 @@ public class SQLiteConexaoSingleton {
         try {
             conexaoSQLite = DriverManager.getConnection(URL);
             criarTabelaRegistro(conexaoSQLite);
-        } catch (SQLException ex) {
-            Logger.getLogger(SQLiteConexaoSingleton.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException e) {
+           throw new RuntimeException("Erro ao conectar ao banco SQLite" + e.getMessage(), e);
         }
 
     }
@@ -58,8 +56,8 @@ public class SQLiteConexaoSingleton {
             try {
                 conexaoSQLite.close();
                 System.out.println("Conexão SQLite fechada.");
-            } catch (SQLException ex) {
-                System.err.println("Erro ao fechar conexão SQLite: " + ex.getMessage());
+            } catch (SQLException e) {
+                throw new RuntimeException("Erro ao fechar conexão SQLite: " + e.getMessage(), e);
             }
         }
     }

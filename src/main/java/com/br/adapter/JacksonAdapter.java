@@ -10,14 +10,16 @@ public class JacksonAdapter implements IJsonSerializer {
 
     @Override
     public String serializar(Object object) {
-        String xml = null;
-        try {
-            XmlMapper xmlMapper = new XmlMapper();
 
+        String xml = null;
+
+        try {
+
+            XmlMapper xmlMapper = new XmlMapper();
             xml = xmlMapper.writeValueAsString(object);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException("Erro de serialização em XML" + e.getMessage(), e);
         }
         
         return xml;
