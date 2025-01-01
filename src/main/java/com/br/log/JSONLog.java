@@ -65,7 +65,6 @@ public class JSONLog implements ILog {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivoJSON))) {
                 writer.write(conteudoAtual.toString());
             }
-
         } catch (IOException e) {
             throw new RuntimeException("Erro ao escrever no arquivo JSON: " + e.getMessage(), e);
         }

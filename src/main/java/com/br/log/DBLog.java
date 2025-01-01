@@ -1,8 +1,6 @@
 package com.br.log;
 
 import com.br.dao.LogSQLiteDAO;
-import com.br.singleton.SQLiteConexaoSingleton;
-import java.sql.SQLException;
 
 /**
  *
