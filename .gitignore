@@ -25,6 +25,7 @@ replay_pid*
 /target/
 
 # add files logs
-logs/
+*.json
+*.xml
 *.db
 
