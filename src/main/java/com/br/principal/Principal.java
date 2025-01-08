@@ -4,6 +4,7 @@ import com.br.log.DBLog;
 import com.br.log.ILog;
 import com.br.log.JSONLog;
 import com.br.log.XMLLog;
+import com.google.gson.GsonBuilder;
 
 /**
  *

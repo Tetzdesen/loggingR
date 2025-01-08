@@ -18,5 +18,5 @@ public class GsonAdapter implements IJsonSerializer {
     public String serializar(Object object) {
         return gson.toJson(object);       
     }
-   
+    
 }
