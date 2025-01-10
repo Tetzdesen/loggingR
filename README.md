@@ -34,7 +34,7 @@ O diagrama de classes podem ser encontrado na pasta `/diagramaclasses` [(Clique 
 
 ## 📦 Como importar utilizando o jitpack
 
-[![](https://jitpack.io/v/Tetzdesen/loggingR.svg)](https://jitpack.io/#Tetzdesen/loggingR)
+[![jitpack](https://jitpack.io/v/Tetzdesen/loggingR.svg)](https://jitpack.io/#Tetzdesen/loggingR)
 
 ### Projeto Maven
 
@@ -51,7 +51,7 @@ Adicione no arquivo pom.xml do seu projeto maven
 <dependency>
 	  <groupId>com.github.Tetzdesen</groupId>
 	  <artifactId>loggingR</artifactId>
-	  <version>0.0.1</version>
+	  <version>1.0.0</version>
 </dependency>
 ```
 
