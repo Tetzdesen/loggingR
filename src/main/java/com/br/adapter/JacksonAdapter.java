@@ -3,6 +3,7 @@ package com.br.adapter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 /**
  *
@@ -18,6 +19,8 @@ public class JacksonAdapter implements IJsonSerializer, IXMLSerializer {
         try {
             
             ObjectMapper objectMapper = new ObjectMapper();
+            
+            objectMapper.registerModule(new JavaTimeModule());
             
             // Serializar
             json = objectMapper.writeValueAsString(object);
@@ -38,6 +41,8 @@ public class JacksonAdapter implements IJsonSerializer, IXMLSerializer {
 
             XmlMapper xmlMapper = new XmlMapper();
             
+            xmlMapper.registerModule(new JavaTimeModule());
+            
             // Serializa
             xml = xmlMapper.writeValueAsString(object);
 
@@ -47,7 +52,5 @@ public class JacksonAdapter implements IJsonSerializer, IXMLSerializer {
         
         return xml;
     }
-
-
 
 }

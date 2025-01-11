@@ -32,6 +32,13 @@
             <version>2.15.2</version> <!-- Certifique-se de usar a versão mais recente -->
         </dependency>
         
+        <!-- support for "Java 8 date time api" -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.17.0</version>
+        </dependency>
+        
         <dependency>
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
