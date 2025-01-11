@@ -53,6 +53,4 @@ public class JacksonAdapter implements IJsonSerializer, IXMLSerializer {
         return xml;
     }
 
-
-
 }
