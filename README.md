@@ -51,7 +51,7 @@ Adicione no arquivo pom.xml do seu projeto maven:
 <dependency>
 	  <groupId>com.github.Tetzdesen</groupId>
 	  <artifactId>loggingR</artifactId>
-	  <version>1.0.1</version>
+	  <version>1.0.2</version>
 </dependency>
 ```
 
