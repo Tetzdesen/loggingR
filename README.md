@@ -38,7 +38,7 @@ O diagrama de classes podem ser encontrado na pasta `/diagramaclasses` [(Clique 
 
 ### Projeto Maven
 
-Adicione no arquivo pom.xml do seu projeto maven
+Adicione no arquivo pom.xml do seu projeto maven:
 
 ```
 <repositories>
@@ -51,7 +51,7 @@ Adicione no arquivo pom.xml do seu projeto maven
 <dependency>
 	  <groupId>com.github.Tetzdesen</groupId>
 	  <artifactId>loggingR</artifactId>
-	  <version>1.0.0</version>
+	  <version>1.0.1</version>
 </dependency>
 ```
 

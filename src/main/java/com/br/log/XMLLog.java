@@ -44,7 +44,7 @@ public class XMLLog implements ILog {
     @Override
     public void escrever(Object object) {
         try {
-            String xml = jacksonAdapter.serializar(object);
+            String xml = jacksonAdapter.serializarXML(object);
             escreverMensagemEmArquivoXML(xml);
             System.out.println("\nLog registrado no arquivo XML!");
         } catch (IOException e) {

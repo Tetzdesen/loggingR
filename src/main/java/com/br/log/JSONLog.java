@@ -1,6 +1,6 @@
 package com.br.log;
 
-import com.br.adapter.GsonAdapter;
+import com.br.adapter.JacksonAdapter;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -14,11 +14,11 @@ import java.io.IOException;
 public class JSONLog implements ILog {
     private final File arquivoJSON;
     private final String caminhoArquivo = "logs/JSONLog.json";
-    private final GsonAdapter gsonAdapter;
+    private final JacksonAdapter jacksonAdapter;
 
     public JSONLog() {
         this.arquivoJSON = criarArquivo();
-        this.gsonAdapter = new GsonAdapter();
+        this.jacksonAdapter = new JacksonAdapter();
     }
     
     private File criarArquivo(){
@@ -29,7 +29,7 @@ public class JSONLog implements ILog {
     @Override
     public void escrever(Object object) {
         try {
-            String mensagem = gsonAdapter.serializar(object);
+            String mensagem = jacksonAdapter.serializarJson(object);
             escreverMensagemEmArquivoJSON(mensagem);
             System.out.println("\nDado registrado com sucesso!");
         } catch (IOException e) {
