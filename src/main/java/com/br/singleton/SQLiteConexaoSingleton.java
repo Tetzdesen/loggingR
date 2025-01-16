@@ -1,5 +1,7 @@
 package com.br.singleton;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -17,10 +19,11 @@ public class SQLiteConexaoSingleton {
     private SQLiteConexaoSingleton() {
 
         try {
+            verificaArquivoDB();
             conexaoSQLite = DriverManager.getConnection(URL);
-            criarTabelaRegistro(conexaoSQLite);
+            criaTabelaRegistro();
         } catch (SQLException e) {
-           throw new RuntimeException("Erro ao conectar ao banco SQLite" + e.getMessage(), e);
+            throw new RuntimeException("Erro ao conectar ao banco SQLite" + e.getMessage(), e);
         }
 
     }
@@ -38,7 +41,7 @@ public class SQLiteConexaoSingleton {
         return conexaoSQLite;
     }
 
-    private void criarTabelaRegistro(Connection conn) throws SQLException {
+    private void criaTabelaRegistro() {
         String sql = """
             CREATE TABLE IF NOT EXISTS log (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -46,8 +49,22 @@ public class SQLiteConexaoSingleton {
             );
         """;
 
-        try (var stmt = conn.createStatement()) {
+        try (var stmt = conexaoSQLite.createStatement()) {
             stmt.execute(sql);
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro na criação de tabela no banco de dados: " + e.getMessage(), e);
+        }
+    }
+
+    private void verificaArquivoDB() {
+        File arquivo = new File("db/log.db");
+        arquivo.getParentFile().mkdirs();
+        if (!arquivo.exists() || arquivo.length() == 0) {
+            try {
+                arquivo.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException("Erro ao criar arquivo: " + e.getMessage(), e);
+            }
         }
     }
 

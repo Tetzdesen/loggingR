@@ -13,10 +13,11 @@ import java.io.IOException;
  * @author tetzner
  */
 public class XMLLog implements ILog {
+
     private final File arquivoXML;
-    private final String caminhoArquivo = "logs/XMLLog.xml";
+    private static final String CAMINHOARQUIVO = "logs/XMLLog.xml";
     private final JacksonAdapter jacksonAdapter;
-    
+
     public XMLLog() {
         jacksonAdapter = new JacksonAdapter();
         arquivoXML = criarArquivoXML();
@@ -24,8 +25,8 @@ public class XMLLog implements ILog {
 
     private File criarArquivoXML() {
 
-        File arquivo = new File(caminhoArquivo);
-
+        File arquivo = new File(CAMINHOARQUIVO);
+        arquivo.getParentFile().mkdirs();
         if (!arquivo.exists() || arquivo.length() == 0) {
             try {
                 arquivo.createNewFile();
@@ -35,7 +36,7 @@ public class XMLLog implements ILog {
                     writer.write("</Registros>");
                 }
             } catch (IOException e) {
-              throw new RuntimeException("Erro na criação de arquivo XML" + e.getMessage(), e);
+                throw new RuntimeException("Erro na criação de arquivo XML" + e.getMessage(), e);
             }
         }
         return arquivo;
@@ -53,7 +54,7 @@ public class XMLLog implements ILog {
     }
 
     private void escreverMensagemEmArquivoXML(String mensagem) throws IOException {
-       
+
         StringBuilder conteudoXML = new StringBuilder();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(arquivoXML))) {

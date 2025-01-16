@@ -1,5 +1,7 @@
 package com.br.adapter;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
@@ -20,9 +22,11 @@ public class JacksonAdapter implements IJsonSerializer, IXMLSerializer {
             
             ObjectMapper objectMapper = new ObjectMapper();
             
+            objectMapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
+            
             objectMapper.registerModule(new JavaTimeModule());
             
-            // Serializar
+            // Serializa em json
             json = objectMapper.writeValueAsString(object);
             
         } catch (JsonProcessingException e) {
@@ -41,9 +45,11 @@ public class JacksonAdapter implements IJsonSerializer, IXMLSerializer {
 
             XmlMapper xmlMapper = new XmlMapper();
             
+            xmlMapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
+            
             xmlMapper.registerModule(new JavaTimeModule());
             
-            // Serializa
+            // Serializa em xml
             xml = xmlMapper.writeValueAsString(object);
 
         } catch (Exception e) {
