@@ -26,11 +26,6 @@ O diagrama de classes podem ser encontrado na pasta `/diagramaclasses` [(Clique 
 ## 📋 Requisitos
 - **Linguagem**: Java 17.
 - **Gerenciador de Dependências**: Maven.
-- **Entregáveis**:
-
-  - Código-fonte completo no GitHub.
-  - Tratamento de exceções para garantir a confiabilidade.
-  - Diagrama de classes atualizado.
 
 ## 📦 Como importar utilizando o jitpack
 
@@ -51,7 +46,7 @@ Adicione no arquivo pom.xml do seu projeto maven:
 <dependency>
 	  <groupId>com.github.Tetzdesen</groupId>
 	  <artifactId>loggingR</artifactId>
-	  <version>1.0.2</version>
+	  <version>1.0.3</version>
 </dependency>
 ```
 

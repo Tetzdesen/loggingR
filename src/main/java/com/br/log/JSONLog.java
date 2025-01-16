@@ -7,23 +7,33 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+
 /**
  *
  * @author tetzner
  */
 public class JSONLog implements ILog {
+
     private final File arquivoJSON;
-    private final String caminhoArquivo = "logs/JSONLog.json";
+    private static final String CAMINHOARQUIVO = "logs/JSONLog.json";
     private final JacksonAdapter jacksonAdapter;
 
     public JSONLog() {
         this.arquivoJSON = criarArquivo();
         this.jacksonAdapter = new JacksonAdapter();
     }
-    
-    private File criarArquivo(){
-        File file = new File(caminhoArquivo);
-        return file;
+
+    private File criarArquivo() {
+        File arquivo = new File(CAMINHOARQUIVO);
+        arquivo.getParentFile().mkdirs();
+        if (!arquivo.exists() || arquivo.length() == 0) {
+            try {
+                arquivo.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException("Erro ao criar arquivo: " + e.getMessage(), e);
+            }
+        }
+        return arquivo;
     }
 
     @Override
@@ -31,15 +41,14 @@ public class JSONLog implements ILog {
         try {
             String mensagem = jacksonAdapter.serializarJson(object);
             escreverMensagemEmArquivoJSON(mensagem);
-            System.out.println("\nDado registrado com sucesso!");
         } catch (IOException e) {
             throw new RuntimeException("Erro ao realizar a escrita da mensagem: " + e.getMessage(), e);
         }
     }
-    
+
     private void escreverMensagemEmArquivoJSON(String mensagem) throws IOException {
-        try { 
-            
+        try {
+
             StringBuilder conteudoAtual = new StringBuilder();
 
             if (arquivoJSON.length() > 2) {
@@ -69,5 +78,5 @@ public class JSONLog implements ILog {
             throw new RuntimeException("Erro ao escrever no arquivo JSON: " + e.getMessage(), e);
         }
     }
-    
+
 }
