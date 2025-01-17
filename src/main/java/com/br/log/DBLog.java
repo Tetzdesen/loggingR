@@ -16,7 +16,7 @@ public class DBLog implements ILog {
     @Override
     public void escrever(Object object) {
         logDAO.inserirLog(object.toString());
-        System.out.println("\nDado registrado com sucesso!");
+        System.out.println("\nDado registrado no banco SQLite com sucesso!");
     }
 
 }
