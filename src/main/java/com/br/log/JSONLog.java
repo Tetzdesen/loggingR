@@ -41,6 +41,7 @@ public class JSONLog implements ILog {
         try {
             String mensagem = jacksonAdapter.serializarJson(object);
             escreverMensagemEmArquivoJSON(mensagem);
+            System.out.println("\nLog registrado no arquivo JSON!");
         } catch (IOException e) {
             throw new RuntimeException("Erro ao realizar a escrita da mensagem: " + e.getMessage(), e);
         }
