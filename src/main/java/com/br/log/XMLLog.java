@@ -1,12 +1,13 @@
 package com.br.log;
 
-import com.br.adapter.JacksonAdapter;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import com.br.adapter.JacksonAdapter;
 
 /**
  *
