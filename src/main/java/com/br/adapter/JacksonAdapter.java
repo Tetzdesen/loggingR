@@ -11,10 +11,10 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
  *
  * @author tetzner
  */
-public class JacksonAdapter implements IJsonSerializer, IXMLSerializer {
+public class JacksonAdapter implements IJSONFormatter {
 
     @Override
-    public String serializarJson(Object object) {
+    public String retornarJSONFormatado(String mensagem) {
         
         String json = null;
         
@@ -26,37 +26,13 @@ public class JacksonAdapter implements IJsonSerializer, IXMLSerializer {
             
             objectMapper.registerModule(new JavaTimeModule());
             
-            // Serializa em json
-            json = objectMapper.writeValueAsString(object);
+            json = objectMapper.writeValueAsString(mensagem);
             
         } catch (JsonProcessingException e) {
-            throw new RuntimeException("Erro de serialização em JSON" + e.getMessage(), e);
+            throw new RuntimeException("Erro de formatação em JSON" + e.getMessage(), e);
         }
         
         return json;
-    }
-    
-    @Override
-    public String serializarXML(Object object) {
-
-        String xml = null;
-
-        try {
-
-            XmlMapper xmlMapper = new XmlMapper();
-            
-            xmlMapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
-            
-            xmlMapper.registerModule(new JavaTimeModule());
-            
-            // Serializa em xml
-            xml = xmlMapper.writeValueAsString(object);
-
-        } catch (Exception e) {
-            throw new RuntimeException("Erro de serialização em XML" + e.getMessage(), e);
-        }
-        
-        return xml;
     }
 
 }
