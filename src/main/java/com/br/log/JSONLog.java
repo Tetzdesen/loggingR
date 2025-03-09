@@ -37,10 +37,10 @@ public class JSONLog implements ILog {
     }
 
     @Override
-    public void escrever(Object object) {
+    public void escrever(String mensagem) {
         try {
-            String mensagem = jacksonAdapter.serializarJson(object);
-            escreverMensagemEmArquivoJSON(mensagem);
+            String json = jacksonAdapter.retornarJSONFormatado(mensagem);
+            escreverMensagemEmArquivoJSON(json);
             System.out.println("\nLog registrado no arquivo JSON!");
         } catch (IOException e) {
             throw new RuntimeException("Erro ao realizar a escrita da mensagem: " + e.getMessage(), e);
