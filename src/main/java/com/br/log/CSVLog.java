@@ -36,7 +36,6 @@ public class CSVLog implements ILog {
         try {
             String csv = adapterCSV.retornarCSVFormatado(mensagem);
             escreverMensagemEmArquivoCSV(csv);
-            System.out.println("\nLog registrado no arquivo CSV!");
         } catch (Exception e) {
             throw new RuntimeException("Erro na gravação de arquivo CSV" + e.getMessage(), e);
         }

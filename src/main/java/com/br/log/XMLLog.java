@@ -48,7 +48,6 @@ public class XMLLog implements ILog {
         try {
             String xml = jacksonAdapter.retornarJSONFormatado(mensagem);
             escreverMensagemEmArquivoXML(xml);
-            System.out.println("\nLog registrado no arquivo XML!");
         } catch (IOException e) {
             throw new RuntimeException("Erro na gravação de arquivo XML" + e.getMessage(), e);
         }
