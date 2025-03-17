@@ -17,12 +17,6 @@ loggingR é um módulo externo de logging desenvolvido para aplicações Java, o
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![JitPack](https://img.shields.io/badge/JitPack-2.0.0-green?style=for-the-badge&logo=jitpack)
 
-## 📐 Diagrama de classes
-
-O diagrama de classes podem ser encontrado na pasta `/diagramaclasses` [(Clique aqui)](diagramaclasses/).
-
-![Diagrama de Classes](diagramaclasses/loggingR.svg)
-
 ## 📋 Requisitos
 - **Linguagem**: Java 17.
 - **Gerenciador de Dependências**: Maven.
