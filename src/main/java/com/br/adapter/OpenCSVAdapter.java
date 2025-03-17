@@ -6,10 +6,10 @@ public class OpenCSVAdapter implements ICSVFormatter {
 
     @Override
     public String retornarCSVFormatado(String mensagem) {
-        
+
         StringWriter writer = new StringWriter();
 
-        writer.append(mensagem);
+        writer.append(mensagem).append(",");
 
         return writer.toString();
     }
